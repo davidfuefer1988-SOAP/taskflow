@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>TaskFlow - Dashboard</title>
+
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+    <div class="app">
+
+        <!-- BARRA LATERAL -->
+        <aside class="sidebar">
+
+            <div class="logo">
+                <div class="logo-icon">✓</div>
+                <span>TaskFlow</span>
+            </div>
+
+            <nav class="navigation">
+
+                <a href="#" class="nav-item active">
+                    <span class="nav-icon">⌂</span>
+                    Dashboard
+                </a>
+
+                <a href="#" class="nav-item">
+                    <span class="nav-icon">☷</span>
+                    Mis tareas
+                </a>
+
+                <a href="#" class="nav-item">
+                    <span class="nav-icon">⚙</span>
+                    Ajustes
+                </a>
+
+            </nav>
+
+            <div class="sidebar-footer">
+                <span>TaskFlow</span>
+                <small>v1.0</small>
+            </div>
+
+        </aside>
+
+
+        <!-- CONTENIDO PRINCIPAL -->
+        <main class="main">
+
+            <!-- CABECERA -->
+            <header class="header">
+
+                <div>
+                    <p class="welcome">Bienvenido de nuevo 👋</p>
+                    <h1>Mi Dashboard</h1>
+                </div>
+
+                <button class="profile">
+                    <div class="profile-avatar">D</div>
+
+                    <div class="profile-info">
+                        <strong>Usuario</strong>
+                        <span>Mi cuenta</span>
+                    </div>
+                </button>
+
+            </header>
+
+
+            <!-- ESTADÍSTICAS -->
+            <section class="stats">
+
+                <div class="stat-card">
+                    <div class="stat-icon blue">☷</div>
+
+                    <div>
+                        <span>Total de tareas</span>
+                        <strong id="totalTasks">0</strong>
+                    </div>
+                </div>
+
+
+                <div class="stat-card">
+                    <div class="stat-icon green">✓</div>
+
+                    <div>
+                        <span>Completadas</span>
+                        <strong id="completedTasks">0</strong>
+                    </div>
+                </div>
+
+
+                <div class="stat-card">
+                    <div class="stat-icon orange">◷</div>
+
+                    <div>
+                        <span>Pendientes</span>
+                        <strong id="pendingTasks">0</strong>
+                    </div>
+                </div>
+
+            </section>
+
+
+            <!-- CONTENIDO -->
+            <section class="content-grid">
+
+                <!-- TAREAS -->
+                <div class="tasks-card">
+
+                    <div class="card-header">
+
+                        <div>
+                            <h2>Mis tareas</h2>
+                            <p>Gestiona tus tareas pendientes</p>
+                        </div>
+
+                        <button id="addTaskBtn" class="add-button">
+                            + Añadir tarea
+                        </button>
+
+                    </div>
+
+
+                    <div id="taskList" class="task-list">
+
+                        <!-- Las tareas aparecerán aquí -->
+
+                        <div class="empty-state">
+
+                            <div class="empty-icon">✓</div>
+
+                            <h3>No tienes tareas</h3>
+
+                            <p>
+                                Añade tu primera tarea para comenzar.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- PROGRESO -->
+                <div class="progress-card">
+
+                    <h2>Progreso</h2>
+
+                    <p class="progress-description">
+                        Tu progreso semanal
+                    </p>
+
+                    <div class="progress-circle">
+
+                        <div class="circle-content">
+                            <strong id="progressValue">0%</strong>
+                            <span>completado</span>
+                        </div>
+
+                    </div>
+
+                    <div class="progress-info">
+
+                        <span>
+                            <i class="dot completed"></i>
+                            Completadas
+                        </span>
+
+                        <span>
+                            <i class="dot pending"></i>
+                            Pendientes
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+        </main>
+
+    </div>
+
+
+    <script src="js/app.js"></script>
+
+</body>
+
+</html>
