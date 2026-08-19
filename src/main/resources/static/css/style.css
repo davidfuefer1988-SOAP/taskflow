@@ -1,6 +1,6 @@
-/* ==============================
+/* =========================================
    CONFIGURACIÓN GENERAL
-================================ */
+========================================= */
 
 * {
     margin: 0;
@@ -10,12 +10,16 @@
 
 body {
     font-family: Arial, Helvetica, sans-serif;
+
     background: #0f1117;
+
     color: #e8eaf0;
 }
 
 button,
-a {
+input,
+textarea,
+select {
     font-family: inherit;
 }
 
@@ -25,22 +29,24 @@ button {
 }
 
 
-/* ==============================
-   ESTRUCTURA
-================================ */
+/* =========================================
+   APP
+========================================= */
 
 .app {
     display: flex;
+
     min-height: 100vh;
 }
 
 
-/* ==============================
+/* =========================================
    SIDEBAR
-================================ */
+========================================= */
 
 .sidebar {
     width: 250px;
+
     min-height: 100vh;
 
     background: #151820;
@@ -50,6 +56,7 @@ button {
     padding: 28px 18px;
 
     display: flex;
+
     flex-direction: column;
 }
 
@@ -58,12 +65,15 @@ button {
 
 .logo {
     display: flex;
+
     align-items: center;
+
     gap: 12px;
 
     padding: 0 10px 35px;
 
     font-size: 21px;
+
     font-weight: 700;
 }
 
@@ -74,7 +84,9 @@ button {
     border-radius: 10px;
 
     display: flex;
+
     align-items: center;
+
     justify-content: center;
 
     background: #3b82f6;
@@ -89,13 +101,17 @@ button {
 
 .navigation {
     display: flex;
+
     flex-direction: column;
+
     gap: 7px;
 }
 
 .nav-item {
     display: flex;
+
     align-items: center;
+
     gap: 13px;
 
     padding: 13px 14px;
@@ -111,22 +127,26 @@ button {
 
 .nav-item:hover {
     background: #1e222d;
+
     color: white;
 }
 
 .nav-item.active {
     background: #202b40;
+
     color: #5c9dff;
 }
 
 .nav-icon {
     width: 22px;
+
     text-align: center;
+
     font-size: 18px;
 }
 
 
-/* FOOTER SIDEBAR */
+/* FOOTER */
 
 .sidebar-footer {
     margin-top: auto;
@@ -136,6 +156,7 @@ button {
     color: #666d7d;
 
     display: flex;
+
     justify-content: space-between;
 }
 
@@ -144,9 +165,9 @@ button {
 }
 
 
-/* ==============================
+/* =========================================
    MAIN
-================================ */
+========================================= */
 
 .main {
     flex: 1;
@@ -159,13 +180,15 @@ button {
 }
 
 
-/* ==============================
+/* =========================================
    HEADER
-================================ */
+========================================= */
 
 .header {
     display: flex;
+
     justify-content: space-between;
+
     align-items: center;
 
     margin-bottom: 30px;
@@ -173,6 +196,7 @@ button {
 
 .welcome {
     color: #7d8494;
+
     font-size: 14px;
 
     margin-bottom: 6px;
@@ -180,6 +204,7 @@ button {
 
 .header h1 {
     font-size: 30px;
+
     letter-spacing: -0.5px;
 }
 
@@ -188,7 +213,9 @@ button {
 
 .profile {
     display: flex;
+
     align-items: center;
+
     gap: 12px;
 
     background: transparent;
@@ -205,7 +232,9 @@ button {
     background: #273142;
 
     display: flex;
+
     align-items: center;
+
     justify-content: center;
 
     color: #72a8ff;
@@ -215,6 +244,7 @@ button {
 
 .profile-info {
     display: flex;
+
     flex-direction: column;
 
     text-align: left;
@@ -224,13 +254,14 @@ button {
 
 .profile-info span {
     color: #777f91;
+
     font-size: 12px;
 }
 
 
-/* ==============================
+/* =========================================
    ESTADÍSTICAS
-================================ */
+========================================= */
 
 .stats {
     display: grid;
@@ -252,6 +283,7 @@ button {
     padding: 22px;
 
     display: flex;
+
     align-items: center;
 
     gap: 17px;
@@ -272,7 +304,9 @@ button {
     border-radius: 12px;
 
     display: flex;
+
     align-items: center;
+
     justify-content: center;
 
     font-size: 20px;
@@ -280,16 +314,19 @@ button {
 
 .stat-icon.blue {
     background: #182c4a;
+
     color: #5b9cff;
 }
 
 .stat-icon.green {
     background: #19352b;
+
     color: #55c995;
 }
 
 .stat-icon.orange {
     background: #3a2d1b;
+
     color: #e7a953;
 }
 
@@ -308,9 +345,9 @@ button {
 }
 
 
-/* ==============================
+/* =========================================
    GRID PRINCIPAL
-================================ */
+========================================= */
 
 .content-grid {
     display: grid;
@@ -321,9 +358,9 @@ button {
 }
 
 
-/* ==============================
+/* =========================================
    TARJETAS
-================================ */
+========================================= */
 
 .tasks-card,
 .progress-card {
@@ -337,12 +374,15 @@ button {
 }
 
 
-/* CABECERA */
+/* =========================================
+   CABECERA DE TAREAS
+========================================= */
 
 .card-header {
     display: flex;
 
     justify-content: space-between;
+
     align-items: center;
 
     margin-bottom: 25px;
@@ -363,7 +403,9 @@ button {
 }
 
 
-/* BOTÓN */
+/* =========================================
+   BOTÓN AÑADIR
+========================================= */
 
 .add-button {
     background: #3b82f6;
@@ -386,9 +428,262 @@ button {
 }
 
 
-/* ==============================
+/* =========================================
+   LISTA DE TAREAS
+========================================= */
+
+.task-list {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 10px;
+}
+
+
+/* =========================================
+   TAREA
+========================================= */
+
+.task-item {
+    display: flex;
+
+    align-items: center;
+
+    gap: 15px;
+
+    padding: 16px;
+
+    background: #11141a;
+
+    border: 1px solid #252a34;
+
+    border-radius: 10px;
+
+    animation: taskAppear 0.25s ease;
+
+    transition: 0.25s ease;
+}
+
+.task-item:hover {
+    border-color: #343a48;
+
+    transform: translateX(2px);
+}
+
+@keyframes taskAppear {
+
+    from {
+        opacity: 0;
+
+        transform: translateY(5px);
+    }
+
+    to {
+        opacity: 1;
+
+        transform: translateY(0);
+    }
+
+}
+
+
+/* =========================================
+   CHECK
+========================================= */
+
+.task-check {
+    flex-shrink: 0;
+}
+
+.check-button {
+    width: 23px;
+    height: 23px;
+
+    border: 2px solid #424957;
+
+    border-radius: 50%;
+
+    background: transparent;
+
+    color: white;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    transition: 0.2s ease;
+}
+
+.check-button:hover {
+    border-color: #3b82f6;
+
+    background: #182c4a;
+}
+
+.task-item.completed .check-button {
+    background: #3b82f6;
+
+    border-color: #3b82f6;
+}
+
+.task-item.completed .check-button::after {
+    content: "✓";
+
+    font-size: 13px;
+
+    font-weight: bold;
+}
+
+
+/* =========================================
+   INFORMACIÓN TAREA
+========================================= */
+
+.task-info {
+    flex: 1;
+
+    min-width: 0;
+}
+
+.task-info h3 {
+    font-size: 14px;
+
+    margin-bottom: 5px;
+
+    transition: 0.2s ease;
+}
+
+.task-info p {
+    color: #737b8c;
+
+    font-size: 12px;
+
+    margin-bottom: 8px;
+}
+
+
+/* COMPLETADA */
+
+.task-item.completed .task-info h3 {
+    color: #727987;
+
+    text-decoration: line-through;
+}
+
+.task-item.completed .task-info p {
+    opacity: 0.6;
+}
+
+
+/* =========================================
+   PRIORIDAD
+========================================= */
+
+.priority {
+    display: inline-block;
+
+    padding: 4px 8px;
+
+    border-radius: 5px;
+
+    font-size: 10px;
+
+    font-weight: 600;
+}
+
+.priority.baja {
+    background: #19352b;
+
+    color: #55c995;
+}
+
+.priority.media {
+    background: #3a2d1b;
+
+    color: #e7a953;
+}
+
+.priority.alta {
+    background: #3a2025;
+
+    color: #ed7887;
+}
+
+
+/* =========================================
+   FECHA
+========================================= */
+
+.task-date {
+    color: #626a7a;
+
+    font-size: 11px;
+
+    white-space: nowrap;
+}
+
+
+/* =========================================
+   ACCIONES DE TAREA
+========================================= */
+
+.task-actions {
+    display: flex;
+
+    align-items: center;
+
+    gap: 7px;
+}
+
+.edit-button,
+.delete-button {
+    width: 32px;
+    height: 32px;
+
+    border-radius: 7px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    transition: 0.2s ease;
+
+    font-size: 14px;
+}
+
+.edit-button {
+    background: #202b40;
+
+    color: #6fa7ff;
+}
+
+.edit-button:hover {
+    background: #293a55;
+
+    color: #8bbaff;
+}
+
+.delete-button {
+    background: #20242d;
+
+    color: #858c9c;
+}
+
+.delete-button:hover {
+    background: #3a2025;
+
+    color: #ed7887;
+}
+
+
+/* =========================================
    ESTADO VACÍO
-================================ */
+========================================= */
 
 .empty-state {
     padding: 55px 20px;
@@ -405,6 +700,7 @@ button {
     height: 55px;
 
     margin: auto;
+
     margin-bottom: 15px;
 
     border-radius: 50%;
@@ -414,7 +710,9 @@ button {
     color: #55c995;
 
     display: flex;
+
     align-items: center;
+
     justify-content: center;
 
     font-size: 23px;
@@ -431,9 +729,9 @@ button {
 }
 
 
-/* ==============================
+/* =========================================
    PROGRESO
-================================ */
+========================================= */
 
 .progress-circle {
     width: 190px;
@@ -446,15 +744,18 @@ button {
     background:
         conic-gradient(
             #3b82f6 0deg,
-            #3b82f6 0deg,
             #252a35 0deg
         );
 
     display: flex;
+
     align-items: center;
+
     justify-content: center;
 
     position: relative;
+
+    transition: background 0.5s ease;
 }
 
 .progress-circle::before {
@@ -474,6 +775,7 @@ button {
     position: relative;
 
     display: flex;
+
     flex-direction: column;
 
     align-items: center;
@@ -492,10 +794,11 @@ button {
 }
 
 
-/* INFORMACIÓN PROGRESO */
+/* PROGRESO INFO */
 
 .progress-info {
     display: flex;
+
     justify-content: space-between;
 
     color: #858b9a;
@@ -505,7 +808,9 @@ button {
 
 .progress-info span {
     display: flex;
+
     align-items: center;
+
     gap: 6px;
 }
 
@@ -527,9 +832,234 @@ button {
 }
 
 
-/* ==============================
+/* =========================================
+   MODAL
+========================================= */
+
+.modal {
+    position: fixed;
+
+    inset: 0;
+
+    background: rgba(0, 0, 0, 0.65);
+
+    display: none;
+
+    align-items: center;
+
+    justify-content: center;
+
+    padding: 20px;
+
+    z-index: 1000;
+}
+
+.modal.show {
+    display: flex;
+}
+
+.modal-content {
+    width: 100%;
+
+    max-width: 500px;
+
+    background: #181b23;
+
+    border: 1px solid #2a2f3b;
+
+    border-radius: 16px;
+
+    padding: 25px;
+
+    box-shadow:
+        0 20px 60px
+        rgba(0, 0, 0, 0.4);
+
+    animation: modalAppear 0.25s ease;
+}
+
+@keyframes modalAppear {
+
+    from {
+        opacity: 0;
+
+        transform:
+            translateY(15px)
+            scale(0.98);
+    }
+
+    to {
+        opacity: 1;
+
+        transform:
+            translateY(0)
+            scale(1);
+    }
+}
+
+
+/* =========================================
+   CABECERA MODAL
+========================================= */
+
+.modal-header {
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: flex-start;
+
+    margin-bottom: 25px;
+}
+
+.modal-header h2 {
+    font-size: 20px;
+}
+
+.modal-header p {
+    color: #777f90;
+
+    font-size: 13px;
+
+    margin-top: 5px;
+}
+
+.close-button {
+    background: transparent;
+
+    color: #858c9c;
+
+    font-size: 28px;
+
+    line-height: 1;
+
+    padding: 0 5px;
+
+    transition: 0.2s;
+}
+
+.close-button:hover {
+    color: white;
+}
+
+
+/* =========================================
+   FORMULARIO
+========================================= */
+
+.form-group {
+    margin-bottom: 18px;
+}
+
+.form-group label {
+    display: block;
+
+    margin-bottom: 8px;
+
+    color: #b9bfcc;
+
+    font-size: 13px;
+
+    font-weight: 600;
+}
+
+.form-group input,
+.form-group textarea,
+.form-group select {
+    width: 100%;
+
+    background: #11141a;
+
+    border: 1px solid #2b303c;
+
+    border-radius: 8px;
+
+    padding: 12px 13px;
+
+    color: #e8eaf0;
+
+    font-size: 14px;
+
+    outline: none;
+
+    transition: 0.2s;
+}
+
+.form-group input:focus,
+.form-group textarea:focus,
+.form-group select:focus {
+    border-color: #3b82f6;
+
+    box-shadow:
+        0 0 0 3px
+        rgba(59, 130, 246, 0.1);
+}
+
+.form-group textarea {
+    min-height: 100px;
+
+    resize: vertical;
+}
+
+
+/* =========================================
+   BOTONES MODAL
+========================================= */
+
+.modal-actions {
+    display: flex;
+
+    justify-content: flex-end;
+
+    gap: 10px;
+
+    margin-top: 25px;
+}
+
+.cancel-button,
+.save-button {
+    padding: 11px 17px;
+
+    border-radius: 8px;
+
+    font-weight: 600;
+
+    transition: 0.2s;
+}
+
+.cancel-button {
+    background: #242833;
+
+    color: #aeb4c1;
+}
+
+.cancel-button:hover {
+    background: #2d323e;
+}
+
+.save-button {
+    background: #3b82f6;
+
+    color: white;
+}
+
+.save-button:hover {
+    background: #2f72df;
+}
+
+
+/* =========================================
    RESPONSIVE
-================================ */
+========================================= */
+
+@media (max-width: 1000px) {
+
+    .content-grid {
+        grid-template-columns: 1fr;
+    }
+
+}
+
 
 @media (max-width: 900px) {
 
@@ -537,11 +1067,8 @@ button {
         width: 210px;
     }
 
-    .content-grid {
-        grid-template-columns: 1fr;
-    }
-
 }
+
 
 @media (max-width: 700px) {
 
@@ -563,6 +1090,31 @@ button {
 
     .profile-info {
         display: none;
+    }
+
+}
+
+
+@media (max-width: 600px) {
+
+    .task-item {
+        align-items: flex-start;
+    }
+
+    .task-date {
+        display: none;
+    }
+
+    .task-actions {
+        flex-direction: column;
+    }
+
+    .card-header {
+        flex-direction: column;
+
+        align-items: flex-start;
+
+        gap: 15px;
     }
 
 }

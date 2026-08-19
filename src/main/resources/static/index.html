@@ -2,194 +2,468 @@
 <html lang="es">
 
 <head>
+
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0">
 
     <title>TaskFlow - Dashboard</title>
 
-    <link rel="stylesheet" href="css/style.css">
+    <link
+        rel="stylesheet"
+        href="css/style.css">
+
 </head>
 
 <body>
 
-    <div class="app">
+<div class="app">
 
-        <!-- BARRA LATERAL -->
-        <aside class="sidebar">
+    <!-- =====================================
+         SIDEBAR
+    ====================================== -->
 
-            <div class="logo">
-                <div class="logo-icon">✓</div>
-                <span>TaskFlow</span>
+    <aside class="sidebar">
+
+        <div class="logo">
+
+            <div class="logo-icon">
+                ✓
             </div>
 
-            <nav class="navigation">
+            <span>
+                TaskFlow
+            </span>
 
-                <a href="#" class="nav-item active">
-                    <span class="nav-icon">⌂</span>
-                    Dashboard
-                </a>
+        </div>
 
-                <a href="#" class="nav-item">
-                    <span class="nav-icon">☷</span>
-                    Mis tareas
-                </a>
 
-                <a href="#" class="nav-item">
-                    <span class="nav-icon">⚙</span>
-                    Ajustes
-                </a>
+        <nav class="navigation">
 
-            </nav>
+            <a
+                href="#"
+                class="nav-item active">
 
-            <div class="sidebar-footer">
-                <span>TaskFlow</span>
-                <small>v1.0</small>
+                <span class="nav-icon">
+                    ⌂
+                </span>
+
+                Dashboard
+
+            </a>
+
+
+            <a
+                href="#"
+                class="nav-item">
+
+                <span class="nav-icon">
+                    ☷
+                </span>
+
+                Mis tareas
+
+            </a>
+
+
+            <a
+                href="#"
+                class="nav-item">
+
+                <span class="nav-icon">
+                    ⚙
+                </span>
+
+                Ajustes
+
+            </a>
+
+        </nav>
+
+
+        <div class="sidebar-footer">
+
+            <span>
+                TaskFlow
+            </span>
+
+            <small>
+                v1.0
+            </small>
+
+        </div>
+
+    </aside>
+
+
+    <!-- =====================================
+         CONTENIDO PRINCIPAL
+    ====================================== -->
+
+    <main class="main">
+
+        <!-- HEADER -->
+
+        <header class="header">
+
+            <div>
+
+                <p class="welcome">
+                    Bienvenido de nuevo 👋
+                </p>
+
+                <h1>
+                    Mi Dashboard
+                </h1>
+
             </div>
 
-        </aside>
+
+            <button class="profile">
+
+                <div class="profile-avatar">
+                    D
+                </div>
+
+                <div class="profile-info">
+
+                    <strong>
+                        Usuario
+                    </strong>
+
+                    <span>
+                        Mi cuenta
+                    </span>
+
+                </div>
+
+            </button>
+
+        </header>
 
 
-        <!-- CONTENIDO PRINCIPAL -->
-        <main class="main">
+        <!-- =====================================
+             ESTADÍSTICAS
+        ====================================== -->
 
-            <!-- CABECERA -->
-            <header class="header">
+        <section class="stats">
+
+            <div class="stat-card">
+
+                <div class="stat-icon blue">
+                    ☷
+                </div>
 
                 <div>
-                    <p class="welcome">Bienvenido de nuevo 👋</p>
-                    <h1>Mi Dashboard</h1>
+
+                    <span>
+                        Total de tareas
+                    </span>
+
+                    <strong id="totalTasks">
+                        0
+                    </strong>
+
                 </div>
 
-                <button class="profile">
-                    <div class="profile-avatar">D</div>
+            </div>
 
-                    <div class="profile-info">
-                        <strong>Usuario</strong>
-                        <span>Mi cuenta</span>
+
+            <div class="stat-card">
+
+                <div class="stat-icon green">
+                    ✓
+                </div>
+
+                <div>
+
+                    <span>
+                        Completadas
+                    </span>
+
+                    <strong id="completedTasks">
+                        0
+                    </strong>
+
+                </div>
+
+            </div>
+
+
+            <div class="stat-card">
+
+                <div class="stat-icon orange">
+                    ◷
+                </div>
+
+                <div>
+
+                    <span>
+                        Pendientes
+                    </span>
+
+                    <strong id="pendingTasks">
+                        0
+                    </strong>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =====================================
+             CONTENIDO
+        ====================================== -->
+
+        <section class="content-grid">
+
+            <!-- TAREAS -->
+
+            <div class="tasks-card">
+
+                <div class="card-header">
+
+                    <div>
+
+                        <h2>
+                            Mis tareas
+                        </h2>
+
+                        <p>
+                            Gestiona tus tareas pendientes
+                        </p>
+
                     </div>
+
+
+                    <button
+                        id="addTaskBtn"
+                        class="add-button">
+
+                        + Añadir tarea
+
+                    </button>
+
+                </div>
+
+
+                <!-- LISTA DE TAREAS -->
+
+                <div
+                    id="taskList"
+                    class="task-list">
+
+                </div>
+
+            </div>
+
+
+            <!-- =====================================
+                 PROGRESO
+            ====================================== -->
+
+            <div class="progress-card">
+
+                <h2>
+                    Progreso
+                </h2>
+
+                <p class="progress-description">
+                    Progreso de tus tareas
+                </p>
+
+
+                <div
+                    id="progressCircle"
+                    class="progress-circle">
+
+                    <div class="circle-content">
+
+                        <strong id="progressValue">
+                            0%
+                        </strong>
+
+                        <span>
+                            completado
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <div class="progress-info">
+
+                    <span>
+
+                        <i class="dot completed"></i>
+
+                        Completadas
+
+                    </span>
+
+
+                    <span>
+
+                        <i class="dot pending"></i>
+
+                        Pendientes
+
+                    </span>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+</div>
+
+
+<!-- =========================================
+     MODAL CREAR / EDITAR TAREA
+========================================= -->
+
+<div
+    id="taskModal"
+    class="modal">
+
+    <div class="modal-content">
+
+        <!-- CABECERA -->
+
+        <div class="modal-header">
+
+            <div>
+
+                <h2 id="modalTitle">
+                    Nueva tarea
+                </h2>
+
+                <p id="modalDescription">
+                    Añade una nueva tarea a tu lista
+                </p>
+
+            </div>
+
+
+            <button
+                id="closeModal"
+                class="close-button">
+
+                ×
+
+            </button>
+
+        </div>
+
+
+        <!-- FORMULARIO -->
+
+        <form id="taskForm">
+
+            <!-- TÍTULO -->
+
+            <div class="form-group">
+
+                <label for="taskTitle">
+                    Título
+                </label>
+
+                <input
+                    type="text"
+                    id="taskTitle"
+                    placeholder="Ej: Estudiar Java"
+                    required>
+
+            </div>
+
+
+            <!-- DESCRIPCIÓN -->
+
+            <div class="form-group">
+
+                <label for="taskDescription">
+                    Descripción
+                </label>
+
+                <textarea
+                    id="taskDescription"
+                    placeholder="Describe la tarea..."></textarea>
+
+            </div>
+
+
+            <!-- PRIORIDAD -->
+
+            <div class="form-group">
+
+                <label for="taskPriority">
+                    Prioridad
+                </label>
+
+                <select id="taskPriority">
+
+                    <option value="Baja">
+                        Baja
+                    </option>
+
+                    <option
+                        value="Media"
+                        selected>
+
+                        Media
+
+                    </option>
+
+                    <option value="Alta">
+                        Alta
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <!-- BOTONES -->
+
+            <div class="modal-actions">
+
+                <button
+                    type="button"
+                    id="cancelTask"
+                    class="cancel-button">
+
+                    Cancelar
+
                 </button>
 
-            </header>
 
+                <button
+                    type="submit"
+                    id="saveTaskButton"
+                    class="save-button">
 
-            <!-- ESTADÍSTICAS -->
-            <section class="stats">
+                    Guardar tarea
 
-                <div class="stat-card">
-                    <div class="stat-icon blue">☷</div>
+                </button>
 
-                    <div>
-                        <span>Total de tareas</span>
-                        <strong id="totalTasks">0</strong>
-                    </div>
-                </div>
+            </div>
 
-
-                <div class="stat-card">
-                    <div class="stat-icon green">✓</div>
-
-                    <div>
-                        <span>Completadas</span>
-                        <strong id="completedTasks">0</strong>
-                    </div>
-                </div>
-
-
-                <div class="stat-card">
-                    <div class="stat-icon orange">◷</div>
-
-                    <div>
-                        <span>Pendientes</span>
-                        <strong id="pendingTasks">0</strong>
-                    </div>
-                </div>
-
-            </section>
-
-
-            <!-- CONTENIDO -->
-            <section class="content-grid">
-
-                <!-- TAREAS -->
-                <div class="tasks-card">
-
-                    <div class="card-header">
-
-                        <div>
-                            <h2>Mis tareas</h2>
-                            <p>Gestiona tus tareas pendientes</p>
-                        </div>
-
-                        <button id="addTaskBtn" class="add-button">
-                            + Añadir tarea
-                        </button>
-
-                    </div>
-
-
-                    <div id="taskList" class="task-list">
-
-                        <!-- Las tareas aparecerán aquí -->
-
-                        <div class="empty-state">
-
-                            <div class="empty-icon">✓</div>
-
-                            <h3>No tienes tareas</h3>
-
-                            <p>
-                                Añade tu primera tarea para comenzar.
-                            </p>
-
-                        </div>
-
-                    </div>
-
-                </div>
-
-
-                <!-- PROGRESO -->
-                <div class="progress-card">
-
-                    <h2>Progreso</h2>
-
-                    <p class="progress-description">
-                        Tu progreso semanal
-                    </p>
-
-                    <div class="progress-circle">
-
-                        <div class="circle-content">
-                            <strong id="progressValue">0%</strong>
-                            <span>completado</span>
-                        </div>
-
-                    </div>
-
-                    <div class="progress-info">
-
-                        <span>
-                            <i class="dot completed"></i>
-                            Completadas
-                        </span>
-
-                        <span>
-                            <i class="dot pending"></i>
-                            Pendientes
-                        </span>
-
-                    </div>
-
-                </div>
-
-            </section>
-
-        </main>
+        </form>
 
     </div>
 
+</div>
 
-    <script src="js/app.js"></script>
+
+<script src="js/app.js"></script>
 
 </body>
 
