@@ -10,9 +10,7 @@
 
 body {
     font-family: Arial, Helvetica, sans-serif;
-
     background: #0f1117;
-
     color: #e8eaf0;
 }
 
@@ -35,7 +33,6 @@ button {
 
 .app {
     display: flex;
-
     min-height: 100vh;
 }
 
@@ -46,7 +43,6 @@ button {
 
 .sidebar {
     width: 250px;
-
     min-height: 100vh;
 
     background: #151820;
@@ -56,7 +52,6 @@ button {
     padding: 28px 18px;
 
     display: flex;
-
     flex-direction: column;
 }
 
@@ -65,15 +60,12 @@ button {
 
 .logo {
     display: flex;
-
     align-items: center;
-
     gap: 12px;
 
     padding: 0 10px 35px;
 
     font-size: 21px;
-
     font-weight: 700;
 }
 
@@ -84,13 +76,10 @@ button {
     border-radius: 10px;
 
     display: flex;
-
     align-items: center;
-
     justify-content: center;
 
     background: #3b82f6;
-
     color: white;
 
     font-weight: bold;
@@ -101,17 +90,13 @@ button {
 
 .navigation {
     display: flex;
-
     flex-direction: column;
-
     gap: 7px;
 }
 
 .nav-item {
     display: flex;
-
     align-items: center;
-
     gap: 13px;
 
     padding: 13px 14px;
@@ -127,21 +112,17 @@ button {
 
 .nav-item:hover {
     background: #1e222d;
-
     color: white;
 }
 
 .nav-item.active {
     background: #202b40;
-
     color: #5c9dff;
 }
 
 .nav-icon {
     width: 22px;
-
     text-align: center;
-
     font-size: 18px;
 }
 
@@ -156,7 +137,6 @@ button {
     color: #666d7d;
 
     display: flex;
-
     justify-content: space-between;
 }
 
@@ -188,7 +168,6 @@ button {
     display: flex;
 
     justify-content: space-between;
-
     align-items: center;
 
     margin-bottom: 30px;
@@ -234,7 +213,6 @@ button {
     display: flex;
 
     align-items: center;
-
     justify-content: center;
 
     color: #72a8ff;
@@ -306,7 +284,6 @@ button {
     display: flex;
 
     align-items: center;
-
     justify-content: center;
 
     font-size: 20px;
@@ -314,19 +291,16 @@ button {
 
 .stat-icon.blue {
     background: #182c4a;
-
     color: #5b9cff;
 }
 
 .stat-icon.green {
     background: #19352b;
-
     color: #55c995;
 }
 
 .stat-icon.orange {
     background: #3a2d1b;
-
     color: #e7a953;
 }
 
@@ -385,7 +359,7 @@ button {
 
     align-items: center;
 
-    margin-bottom: 25px;
+    margin-bottom: 20px;
 }
 
 .card-header h2,
@@ -425,6 +399,57 @@ button {
     background: #2f72df;
 
     transform: translateY(-2px);
+}
+
+
+/* =========================================
+   FILTROS
+========================================= */
+
+.task-filters {
+    display: flex;
+
+    gap: 8px;
+
+    padding: 4px;
+
+    margin-bottom: 20px;
+
+    background: #11141a;
+
+    border: 1px solid #252a34;
+
+    border-radius: 9px;
+
+    width: fit-content;
+}
+
+.filter-button {
+    background: transparent;
+
+    color: #7f8797;
+
+    padding: 8px 14px;
+
+    border-radius: 6px;
+
+    font-size: 12px;
+
+    font-weight: 600;
+
+    transition: 0.2s ease;
+}
+
+.filter-button:hover {
+    color: #e8eaf0;
+
+    background: #1c2029;
+}
+
+.filter-button.active {
+    background: #27354d;
+
+    color: #69a4ff;
 }
 
 
@@ -475,13 +500,11 @@ button {
 
     from {
         opacity: 0;
-
         transform: translateY(5px);
     }
 
     to {
         opacity: 1;
-
         transform: translateY(0);
     }
 
@@ -511,7 +534,6 @@ button {
     display: flex;
 
     align-items: center;
-
     justify-content: center;
 
     transition: 0.2s ease;
@@ -539,7 +561,7 @@ button {
 
 
 /* =========================================
-   INFORMACIÓN TAREA
+   INFORMACIÓN
 ========================================= */
 
 .task-info {
@@ -552,8 +574,6 @@ button {
     font-size: 14px;
 
     margin-bottom: 5px;
-
-    transition: 0.2s ease;
 }
 
 .task-info p {
@@ -627,7 +647,7 @@ button {
 
 
 /* =========================================
-   ACCIONES DE TAREA
+   ACCIONES
 ========================================= */
 
 .task-actions {
@@ -648,7 +668,6 @@ button {
     display: flex;
 
     align-items: center;
-
     justify-content: center;
 
     transition: 0.2s ease;
@@ -712,7 +731,6 @@ button {
     display: flex;
 
     align-items: center;
-
     justify-content: center;
 
     font-size: 23px;
@@ -750,7 +768,6 @@ button {
     display: flex;
 
     align-items: center;
-
     justify-content: center;
 
     position: relative;
@@ -794,7 +811,9 @@ button {
 }
 
 
-/* PROGRESO INFO */
+/* =========================================
+   PROGRESO INFO
+========================================= */
 
 .progress-info {
     display: flex;
@@ -846,7 +865,6 @@ button {
     display: none;
 
     align-items: center;
-
     justify-content: center;
 
     padding: 20px;
@@ -895,6 +913,7 @@ button {
             translateY(0)
             scale(1);
     }
+
 }
 
 
@@ -1115,6 +1134,14 @@ button {
         align-items: flex-start;
 
         gap: 15px;
+    }
+
+    .task-filters {
+        width: 100%;
+    }
+
+    .filter-button {
+        flex: 1;
     }
 
 }

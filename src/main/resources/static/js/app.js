@@ -1,6 +1,6 @@
 // ==========================================
 // TASKFLOW
-// PASO 6 - EDITAR TAREAS
+// PASO 7 - FILTROS DE TAREAS
 // ==========================================
 
 
@@ -49,10 +49,18 @@ const saveTaskButton =
 
 
 // ==========================================
-// VARIABLES
+// FILTROS
 // ==========================================
 
-// Cargar tareas desde LocalStorage
+const filterButtons =
+    document.querySelectorAll(
+        ".filter-button"
+    );
+
+
+// ==========================================
+// VARIABLES
+// ==========================================
 
 let tasks =
     JSON.parse(
@@ -60,9 +68,14 @@ let tasks =
     ) || [];
 
 
-// ID de la tarea que estamos editando
+// ID de tarea que estamos editando
 
 let editingTaskId = null;
+
+
+// Filtro actual
+
+let currentFilter = "all";
 
 
 // ==========================================
@@ -73,12 +86,7 @@ addTaskBtn.addEventListener(
     "click",
     function () {
 
-        // Estamos creando una tarea
-
         editingTaskId = null;
-
-
-        // Cambiar textos del modal
 
         modalTitle.textContent =
             "Nueva tarea";
@@ -89,18 +97,9 @@ addTaskBtn.addEventListener(
         saveTaskButton.textContent =
             "Guardar tarea";
 
-
-        // Limpiar formulario
-
         taskForm.reset();
 
-
-        // Mostrar modal
-
         taskModal.classList.add("show");
-
-
-        // Colocar cursor en título
 
         taskTitle.focus();
 
@@ -165,7 +164,7 @@ taskForm.addEventListener(
 
 
         // ==================================
-        // MODO EDITAR
+        // EDITAR
         // ==================================
 
         if (editingTaskId !== null) {
@@ -182,8 +181,6 @@ taskForm.addEventListener(
 
             if (task) {
 
-                // Actualizar datos
-
                 task.title =
                     taskTitle.value.trim();
 
@@ -199,7 +196,7 @@ taskForm.addEventListener(
 
 
         // ==================================
-        // MODO CREAR
+        // CREAR
         // ==================================
 
         else {
@@ -236,14 +233,14 @@ taskForm.addEventListener(
         saveTasks();
 
 
-        // Actualizar pantalla
+        // Actualizar
 
         renderTasks();
 
         updateStats();
 
 
-        // Cerrar modal
+        // Cerrar
 
         closeTaskModal();
 
@@ -252,7 +249,7 @@ taskForm.addEventListener(
 
 
 // ==========================================
-// GUARDAR EN LOCALSTORAGE
+// GUARDAR LOCALSTORAGE
 // ==========================================
 
 function saveTasks() {
@@ -266,7 +263,7 @@ function saveTasks() {
 
 
 // ==========================================
-// ABRIR MODAL PARA EDITAR
+// EDITAR TAREA
 // ==========================================
 
 function editTask(taskId) {
@@ -281,9 +278,6 @@ function editTask(taskId) {
         );
 
 
-    // Si no existe la tarea
-    // no hacemos nada
-
     if (!task) {
 
         return;
@@ -291,13 +285,9 @@ function editTask(taskId) {
     }
 
 
-    // Guardamos el ID
-
     editingTaskId =
         taskId;
 
-
-    // Cambiar textos
 
     modalTitle.textContent =
         "Editar tarea";
@@ -309,8 +299,6 @@ function editTask(taskId) {
         "Guardar cambios";
 
 
-    // Rellenar formulario
-
     taskTitle.value =
         task.title;
 
@@ -321,14 +309,48 @@ function editTask(taskId) {
         task.priority;
 
 
-    // Mostrar modal
-
     taskModal.classList.add("show");
 
-
-    // Cursor en título
-
     taskTitle.focus();
+
+}
+
+
+// ==========================================
+// FILTRAR TAREAS
+// ==========================================
+
+function getFilteredTasks() {
+
+    if (currentFilter === "pending") {
+
+        return tasks.filter(
+            function (task) {
+
+                return !task.completed;
+
+            }
+        );
+
+    }
+
+
+    if (currentFilter === "completed") {
+
+        return tasks.filter(
+            function (task) {
+
+                return task.completed;
+
+            }
+        );
+
+    }
+
+
+    // Todas
+
+    return tasks;
 
 }
 
@@ -342,11 +364,48 @@ function renderTasks() {
     taskList.innerHTML = "";
 
 
+    const filteredTasks =
+        getFilteredTasks();
+
+
     // ==================================
-    // SIN TAREAS
+    // SIN RESULTADOS
     // ==================================
 
-    if (tasks.length === 0) {
+    if (filteredTasks.length === 0) {
+
+        let title =
+            "No tienes tareas";
+
+        let description =
+            "Añade tu primera tarea para comenzar.";
+
+
+        // Mensaje para pendientes
+
+        if (currentFilter === "pending") {
+
+            title =
+                "No tienes tareas pendientes";
+
+            description =
+                "¡Perfecto! Has completado todas tus tareas.";
+
+        }
+
+
+        // Mensaje para completadas
+
+        if (currentFilter === "completed") {
+
+            title =
+                "No tienes tareas completadas";
+
+            description =
+                "Cuando completes una tarea aparecerá aquí.";
+
+        }
+
 
         taskList.innerHTML = `
 
@@ -357,12 +416,11 @@ function renderTasks() {
                 </div>
 
                 <h3>
-                    No tienes tareas
+                    ${title}
                 </h3>
 
                 <p>
-                    Añade tu primera tarea
-                    para comenzar.
+                    ${description}
                 </p>
 
             </div>
@@ -375,10 +433,10 @@ function renderTasks() {
 
 
     // ==================================
-    // RECORRER TAREAS
+    // MOSTRAR TAREAS
     // ==================================
 
-    tasks.forEach(
+    filteredTasks.forEach(
         function (task) {
 
             const taskElement =
@@ -390,8 +448,6 @@ function renderTasks() {
             );
 
 
-            // Añadir clase si está completada
-
             if (task.completed) {
 
                 taskElement.classList.add(
@@ -401,11 +457,7 @@ function renderTasks() {
             }
 
 
-            // HTML de la tarea
-
             taskElement.innerHTML = `
-
-                <!-- COMPLETAR -->
 
                 <div class="task-check">
 
@@ -418,8 +470,6 @@ function renderTasks() {
 
                 </div>
 
-
-                <!-- INFORMACIÓN -->
 
                 <div class="task-info">
 
@@ -444,16 +494,12 @@ function renderTasks() {
                 </div>
 
 
-                <!-- FECHA -->
-
                 <div class="task-date">
 
                     ${task.createdAt}
 
                 </div>
 
-
-                <!-- ACCIONES -->
 
                 <div class="task-actions">
 
@@ -492,7 +538,55 @@ function renderTasks() {
 
 
 // ==========================================
-// CLICKS EN LAS TAREAS
+// BOTONES DE FILTRO
+// ==========================================
+
+filterButtons.forEach(
+    function (button) {
+
+        button.addEventListener(
+            "click",
+            function () {
+
+                // Quitar active
+
+                filterButtons.forEach(
+                    function (btn) {
+
+                        btn.classList.remove(
+                            "active"
+                        );
+
+                    }
+                );
+
+
+                // Activar botón pulsado
+
+                button.classList.add(
+                    "active"
+                );
+
+
+                // Guardar filtro
+
+                currentFilter =
+                    button.dataset.filter;
+
+
+                // Actualizar lista
+
+                renderTasks();
+
+            }
+        );
+
+    }
+);
+
+
+// ==========================================
+// ACCIONES DE TAREAS
 // ==========================================
 
 taskList.addEventListener(
@@ -567,7 +661,6 @@ taskList.addEventListener(
 
 
             editTask(taskId);
-
 
             return;
 
@@ -651,23 +744,17 @@ function updateStats() {
         total - completed;
 
 
-    // TOTAL
-
     document.getElementById(
         "totalTasks"
     ).textContent =
         total;
 
 
-    // COMPLETADAS
-
     document.getElementById(
         "completedTasks"
     ).textContent =
         completed;
 
-
-    // PENDIENTES
 
     document.getElementById(
         "pendingTasks"
@@ -694,7 +781,7 @@ function updateStats() {
 
 
     // ==================================
-    // CÍRCULO DE PROGRESO
+    // CÍRCULO
     // ==================================
 
     const degrees =
@@ -713,7 +800,7 @@ function updateStats() {
 
 
 // ==========================================
-// INICIAR APLICACIÓN
+// INICIAR
 // ==========================================
 
 renderTasks();
@@ -722,5 +809,5 @@ updateStats();
 
 
 console.log(
-    "TaskFlow - Paso 6 iniciado correctamente"
+    "TaskFlow - Paso 7 iniciado correctamente"
 );
