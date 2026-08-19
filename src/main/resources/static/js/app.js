@@ -1,6 +1,6 @@
 // ==========================================
 // TASKFLOW
-// PASO 7 - FILTROS DE TAREAS
+// PASO 9 - ORDENACIÓN DE TAREAS
 // ==========================================
 
 
@@ -49,6 +49,17 @@ const saveTaskButton =
 
 
 // ==========================================
+// BÚSQUEDA
+// ==========================================
+
+const searchInput =
+    document.getElementById("searchInput");
+
+const clearSearch =
+    document.getElementById("clearSearch");
+
+
+// ==========================================
 // FILTROS
 // ==========================================
 
@@ -56,6 +67,14 @@ const filterButtons =
     document.querySelectorAll(
         ".filter-button"
     );
+
+
+// ==========================================
+// ORDENACIÓN
+// ==========================================
+
+const sortSelect =
+    document.getElementById("sortSelect");
 
 
 // ==========================================
@@ -68,14 +87,13 @@ let tasks =
     ) || [];
 
 
-// ID de tarea que estamos editando
-
 let editingTaskId = null;
 
-
-// Filtro actual
-
 let currentFilter = "all";
+
+let currentSearch = "";
+
+let currentSort = "newest";
 
 
 // ==========================================
@@ -135,7 +153,7 @@ cancelTask.addEventListener(
 
 
 // ==========================================
-// CERRAR MODAL AL PULSAR FUERA
+// CERRAR AL PULSAR FUERA
 // ==========================================
 
 taskModal.addEventListener(
@@ -228,19 +246,11 @@ taskForm.addEventListener(
         }
 
 
-        // Guardar
-
         saveTasks();
-
-
-        // Actualizar
 
         renderTasks();
 
         updateStats();
-
-
-        // Cerrar
 
         closeTaskModal();
 
@@ -249,7 +259,7 @@ taskForm.addEventListener(
 
 
 // ==========================================
-// GUARDAR LOCALSTORAGE
+// GUARDAR EN LOCALSTORAGE
 // ==========================================
 
 function saveTasks() {
@@ -317,14 +327,14 @@ function editTask(taskId) {
 
 
 // ==========================================
-// FILTRAR TAREAS
+// FILTRAR POR ESTADO
 // ==========================================
 
-function getFilteredTasks() {
+function filterByStatus(taskArray) {
 
     if (currentFilter === "pending") {
 
-        return tasks.filter(
+        return taskArray.filter(
             function (task) {
 
                 return !task.completed;
@@ -337,7 +347,7 @@ function getFilteredTasks() {
 
     if (currentFilter === "completed") {
 
-        return tasks.filter(
+        return taskArray.filter(
             function (task) {
 
                 return task.completed;
@@ -348,9 +358,197 @@ function getFilteredTasks() {
     }
 
 
-    // Todas
+    return taskArray;
 
-    return tasks;
+}
+
+
+// ==========================================
+// BUSCAR TAREAS
+// ==========================================
+
+function filterBySearch(taskArray) {
+
+    if (currentSearch === "") {
+
+        return taskArray;
+
+    }
+
+
+    const search =
+        currentSearch.toLowerCase();
+
+
+    return taskArray.filter(
+        function (task) {
+
+            const title =
+                task.title.toLowerCase();
+
+            const description =
+                (task.description || "")
+                    .toLowerCase();
+
+            const priority =
+                task.priority.toLowerCase();
+
+
+            return (
+                title.includes(search) ||
+                description.includes(search) ||
+                priority.includes(search)
+            );
+
+        }
+    );
+
+}
+
+
+// ==========================================
+// ORDENAR TAREAS
+// ==========================================
+
+function sortTasks(taskArray) {
+
+    // Creamos una copia para no modificar
+    // directamente el array original
+
+    const sortedTasks =
+        [...taskArray];
+
+
+    // ==================================
+    // MÁS RECIENTES
+    // ==================================
+
+    if (currentSort === "newest") {
+
+        sortedTasks.sort(
+            function (a, b) {
+
+                return b.id - a.id;
+
+            }
+        );
+
+    }
+
+
+    // ==================================
+    // MÁS ANTIGUAS
+    // ==================================
+
+    else if (currentSort === "oldest") {
+
+        sortedTasks.sort(
+            function (a, b) {
+
+                return a.id - b.id;
+
+            }
+        );
+
+    }
+
+
+    // ==================================
+    // PRIORIDAD ALTA → BAJA
+    // ==================================
+
+    else if (
+        currentSort === "priority-high"
+    ) {
+
+        const priorityValues = {
+
+            Alta: 3,
+
+            Media: 2,
+
+            Baja: 1
+
+        };
+
+
+        sortedTasks.sort(
+            function (a, b) {
+
+                return (
+                    priorityValues[b.priority] -
+                    priorityValues[a.priority]
+                );
+
+            }
+        );
+
+    }
+
+
+    // ==================================
+    // PRIORIDAD BAJA → ALTA
+    // ==================================
+
+    else if (
+        currentSort === "priority-low"
+    ) {
+
+        const priorityValues = {
+
+            Alta: 3,
+
+            Media: 2,
+
+            Baja: 1
+
+        };
+
+
+        sortedTasks.sort(
+            function (a, b) {
+
+                return (
+                    priorityValues[a.priority] -
+                    priorityValues[b.priority]
+                );
+
+            }
+        );
+
+    }
+
+
+    return sortedTasks;
+
+}
+
+
+// ==========================================
+// OBTENER TAREAS FILTRADAS Y ORDENADAS
+// ==========================================
+
+function getFilteredTasks() {
+
+    // Primero filtramos por estado
+
+    let result =
+        filterByStatus(tasks);
+
+
+    // Después aplicamos búsqueda
+
+    result =
+        filterBySearch(result);
+
+
+    // Finalmente ordenamos
+
+    result =
+        sortTasks(result);
+
+
+    return result;
 
 }
 
@@ -381,9 +579,22 @@ function renderTasks() {
             "Añade tu primera tarea para comenzar.";
 
 
-        // Mensaje para pendientes
+        // BÚSQUEDA
 
-        if (currentFilter === "pending") {
+        if (currentSearch !== "") {
+
+            title =
+                "No se encontraron tareas";
+
+            description =
+                `No hay resultados para "${currentSearch}".`;
+
+        }
+
+
+        // PENDIENTES
+
+        else if (currentFilter === "pending") {
 
             title =
                 "No tienes tareas pendientes";
@@ -394,9 +605,9 @@ function renderTasks() {
         }
 
 
-        // Mensaje para completadas
+        // COMPLETADAS
 
-        if (currentFilter === "completed") {
+        else if (currentFilter === "completed") {
 
             title =
                 "No tienes tareas completadas";
@@ -538,6 +749,65 @@ function renderTasks() {
 
 
 // ==========================================
+// BUSCADOR - ESCRIBIR
+// ==========================================
+
+searchInput.addEventListener(
+    "input",
+    function () {
+
+        currentSearch =
+            searchInput.value.trim();
+
+
+        if (currentSearch !== "") {
+
+            clearSearch.classList.add(
+                "visible"
+            );
+
+        }
+
+        else {
+
+            clearSearch.classList.remove(
+                "visible"
+            );
+
+        }
+
+
+        renderTasks();
+
+    }
+);
+
+
+// ==========================================
+// LIMPIAR BÚSQUEDA
+// ==========================================
+
+clearSearch.addEventListener(
+    "click",
+    function () {
+
+        searchInput.value = "";
+
+        currentSearch = "";
+
+        clearSearch.classList.remove(
+            "visible"
+        );
+
+        renderTasks();
+
+        searchInput.focus();
+
+    }
+);
+
+
+// ==========================================
 // BOTONES DE FILTRO
 // ==========================================
 
@@ -547,8 +817,6 @@ filterButtons.forEach(
         button.addEventListener(
             "click",
             function () {
-
-                // Quitar active
 
                 filterButtons.forEach(
                     function (btn) {
@@ -561,25 +829,37 @@ filterButtons.forEach(
                 );
 
 
-                // Activar botón pulsado
-
                 button.classList.add(
                     "active"
                 );
 
 
-                // Guardar filtro
-
                 currentFilter =
                     button.dataset.filter;
 
-
-                // Actualizar lista
 
                 renderTasks();
 
             }
         );
+
+    }
+);
+
+
+// ==========================================
+// CAMBIAR ORDENACIÓN
+// ==========================================
+
+sortSelect.addEventListener(
+    "change",
+    function () {
+
+        currentSort =
+            sortSelect.value;
+
+
+        renderTasks();
 
     }
 );
@@ -800,7 +1080,7 @@ function updateStats() {
 
 
 // ==========================================
-// INICIAR
+// INICIAR APLICACIÓN
 // ==========================================
 
 renderTasks();
@@ -809,5 +1089,5 @@ updateStats();
 
 
 console.log(
-    "TaskFlow - Paso 7 iniciado correctamente"
+    "TaskFlow - Paso 9 iniciado correctamente"
 );

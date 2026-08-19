@@ -252,6 +252,35 @@
 
 
                 <!-- =================================
+                     BÚSQUEDA
+                ================================== -->
+
+                <div class="search-container">
+
+                    <span class="search-icon">
+                        🔎
+                    </span>
+
+                    <input
+                        type="text"
+                        id="searchInput"
+                        class="search-input"
+                        placeholder="Buscar tareas..."
+                        autocomplete="off">
+
+                    <button
+                        id="clearSearch"
+                        class="clear-search"
+                        title="Limpiar búsqueda">
+
+                        ×
+
+                    </button>
+
+                </div>
+
+
+                <!-- =================================
                      FILTROS
                 ================================== -->
 
@@ -282,6 +311,41 @@
                         Completadas
 
                     </button>
+
+                </div>
+
+
+                <!-- =================================
+                     ORDENACIÓN
+                ================================== -->
+
+                <div class="sort-container">
+
+                    <label for="sortSelect">
+                        Ordenar por:
+                    </label>
+
+                    <select
+                        id="sortSelect"
+                        class="sort-select">
+
+                        <option value="newest">
+                            Más recientes
+                        </option>
+
+                        <option value="oldest">
+                            Más antiguas
+                        </option>
+
+                        <option value="priority-high">
+                            Prioridad: alta → baja
+                        </option>
+
+                        <option value="priority-low">
+                            Prioridad: baja → alta
+                        </option>
+
+                    </select>
 
                 </div>
 
@@ -371,8 +435,6 @@
 
     <div class="modal-content">
 
-        <!-- CABECERA -->
-
         <div class="modal-header">
 
             <div>
@@ -398,8 +460,6 @@
 
         </div>
 
-
-        <!-- FORMULARIO -->
 
         <form id="taskForm">
 
